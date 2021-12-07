@@ -5,15 +5,17 @@
     <sidebar v-if="!sidebar.hide" class="sidebar-container" />
     <div :class="{sidebarHide: sidebar.hide}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
-        <!-- <navbar /> -->
+<!--         <navbar />-->
+
       </div>
+      <tags-view/>
       <app-main />
     </div>
   </div>
 </template>
 
 <script>
-import { Sidebar, AppMain, Topbar } from './components'
+import { Navbar, Sidebar, AppMain, Topbar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -22,7 +24,8 @@ export default {
     // Navbar,
     Sidebar,
     AppMain,
-    Topbar
+    Topbar,
+    TagsView
   },
   mixins: [ResizeMixin],
   computed: {

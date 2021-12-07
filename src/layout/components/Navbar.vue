@@ -2,18 +2,18 @@
   <div class="navbar">
     <hamburger v-if="!sidebar.hide" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <!-- <breadcrumb class="breadcrumb-container" /> -->
+     <breadcrumb class="breadcrumb-container" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-// import Breadcrumb from '@/components/Breadcrumb'
+import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    // Breadcrumb,
+    Breadcrumb,
     Hamburger
   },
   computed: {
