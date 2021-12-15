@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
+
 /* Layout */
 import Layout from '@/layout'
 // 同步路由
@@ -38,14 +39,9 @@ export const constantRoutes = [
         meta: { title: '测试2', noLogin: true }
       },
       {
-        path: 'test2',
-        name: '测试22',
-        component: (resolve) => require(['@/views/test2'], resolve),
-        meta: { title: '测试22', noLogin: true }
-      },
-      {
         path: 'test3',
         component: (resolve) => require(['@/views/test3'], resolve),
+        redirect: '/test/test3/index',
         meta: { title: '测试3', noLogin: true },
         name: '测试3',
         children: [
@@ -62,11 +58,22 @@ export const constantRoutes = [
             meta: { title: '测试3-2' }
           }
         ]
+      },
+      {
+        path: 'test2',
+        name: '测试22',
+        component: (resolve) => require(['@/views/test2'], resolve),
+        meta: { title: '测试22', noLogin: true }
       }
     ]
   },
   { path: '*', redirect: '/home', hidden: true }
 ]
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err)
+}
 
 const createRouter = () => new Router({
   scrollBehavior: () => ({ y: 0 }),

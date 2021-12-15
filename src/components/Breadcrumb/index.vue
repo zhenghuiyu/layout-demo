@@ -1,20 +1,16 @@
 <template>
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-      v-for="item in breadcrumb"
-      :to="{ path: item.path }"
-      :key="item.path">
-      {{ item.text }}
-    </el-breadcrumb-item>
-      <!-- <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item> -->
-      <!-- <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
-        <span v-if="index === 0">当前位置：</span>
-        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{item.meta.title }}</span>
+      <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
+        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
-      </el-breadcrumb-item> -->
+      </el-breadcrumb-item>
+<!--      <el-breadcrumb-item-->
+<!--      v-for="item in levelList"-->
+<!--      :to="{ path: item.path }"-->
+<!--      :key="item.path">-->
+<!--      {{ item.name }}-->
+<!--    </el-breadcrumb-item>-->
     </transition-group>
   </el-breadcrumb>
 </template>
@@ -25,13 +21,14 @@ import pathToRegexp from 'path-to-regexp'
 export default {
   data() {
     return {
+      levelList: null
     }
   },
-  computed: {
-    breadcrumb() {
-      return this.$store.state.breadcrumb
-    }
-  },
+  // computed: {
+  //   breadcrumb() {
+  //     return this.$store.state.breadcrumb
+  //   }
+  // },
   watch: {
     $route() {
       this.getBreadcrumb()
@@ -44,21 +41,21 @@ export default {
     getBreadcrumb() {
       // only show routes with meta.title
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
-      const first = matched[0]
+      // const first = matched[0]
 
-      if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
-      }
+      // if (!this.isDashboard(first)) {
+      //   matched = [{ path: '/home', meta: { title: '测试' }}].concat(matched)
+      // }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-      console.log(this.levelList,1)
+      console.log(this.levelList,2)
     },
     isDashboard(route) {
       const name = route && route.name
       if (!name) {
         return false
       }
-      return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+      return name.trim().toLocaleLowerCase() === '测试'.toLocaleLowerCase()
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561

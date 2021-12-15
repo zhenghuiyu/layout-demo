@@ -12,7 +12,7 @@
         @click.middle.native="closeSelectedTag(tag)"
         @contextmenu.prevent.native="openMenu(tag,$event)">
 <!--        {{ generateTitle(tag.title) }}-->
-        {{ tag.title  }}
+        {{ tag.title }}
         <span v-if="!(visitedViews.length === 1 && visitedViews[0].path === '/home')" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>

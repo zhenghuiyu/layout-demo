@@ -5,7 +5,7 @@
     <sidebar v-if="!sidebar.hide" class="sidebar-container" />
     <div :class="{sidebarHide: sidebar.hide}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
-<!--         <navbar />-->
+         <navbar />
 
       </div>
       <tags-view/>
@@ -21,7 +21,7 @@ import ResizeMixin from './mixin/ResizeHandler'
 export default {
   name: 'Layout',
   components: {
-    // Navbar,
+    Navbar,
     Sidebar,
     AppMain,
     Topbar,
