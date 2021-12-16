@@ -8,7 +8,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/zhenghuiyu/layout-demo.git
+git clone 项目地址
 
 # 进入项目目录
 cd test-demo
@@ -20,7 +20,7 @@ yarn install 或 npm install
 yarn serve 或 npm run serve
 ```
 
-浏览器访问 http://localhost:9527
+浏览器访问 http://localhost:1216
 
 ## 发布
 

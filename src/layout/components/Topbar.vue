@@ -131,12 +131,13 @@ export default {
       return false
     },
     resolvePath(item) {
+      console.log(item.path)
       // 如果是个完成的url直接返回
       if (isExternal(item.path)) {
         return item.path
       }
       // 如果是首页，就返回重定向路由
-      if (item.path === 'home') {
+      if (item.path === '/home') {
         const path = item.redirect
         return item.path = path
       }
@@ -155,10 +156,22 @@ export default {
         }
         // 第一次需要父项路由拼接，所以只是第一个传parent
         if (parent) {
-          path += (parent.path + '/' + item.path)
+          if (parent.redirect) {
+            path = parent.redirect
+          } else {
+            path = item.path
+          }
         } else {
-          path += ('/' + item.path)
+          path = item.path
         }
+        console.log(path,5)
+        // if (parent) {
+        //   path += (parent.path + '/' + item.path)
+        // } else {
+        //   path += ('/' + item.path)
+        // }
+        // console.log(path,2)
+        // console.log(parent.redirect,11)
         // 如果还有子项，继续递归
         if (item.children) {
           getDefaultPath(item.children[0])
@@ -172,12 +185,11 @@ export default {
       return item.path
     },
     handleSelect(key, keyPath) {
-      console.log(key)
       // 把选中路由的子路由保存store
       const route = this.routes.find(item => item.path === key)
-      console.log(route)
       this.$store.commit('resetBreadcrumb', '')
       this.$store.commit('permission/SET_CURRENT_ROUTES', route)
+      console.log(this.$store.state.permission.currentRoutes)
       this.setSidebarHide(route)
     },
     toPath() {

@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { Message } from 'element-ui'
+// import axios from 'axios'
+// import { Message } from 'element-ui'
 import store from '@/store'
 import { getCookie } from '@/utils/auth'
 // axios.defaults.withCredentials = true // 让ajax携带cookie

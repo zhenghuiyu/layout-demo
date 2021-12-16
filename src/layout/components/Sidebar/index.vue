@@ -37,6 +37,7 @@ export default {
     ]),
     routes() {
       // return this.$router.options.routes
+      console.log(this.$store.state.permission.currentRoutes.children,1)
       return this.$store.state.permission.currentRoutes.children
     },
     activeMenu() {

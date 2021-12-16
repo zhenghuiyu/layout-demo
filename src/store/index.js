@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vue from 'vue'
+// import Vuex from 'vuex'
 import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
@@ -7,8 +7,9 @@ import user from './modules/user'
 import permission from './modules/permission'
 import tagsView from './modules/tagsView'
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
+// eslint-disable-next-line no-undef
 const store = new Vuex.Store({
   state: {
     breadcrumb: []
@@ -21,12 +22,12 @@ const store = new Vuex.Store({
     },
     removeBreadcrumb(state, payload) {
       state.breadcrumb.map((item, index) => {
-        if (JSON.stringify(item) == JSON.stringify(payload)) {
+        if (JSON.stringify(item) === JSON.stringify(payload)) {
           state.breadcrumb.splice(index, state.breadcrumb.length)
         }
       })
     },
-    resetBreadcrumb(state,payload) {
+    resetBreadcrumb(state, payload) {
       state.breadcrumb = []
     }
   },
